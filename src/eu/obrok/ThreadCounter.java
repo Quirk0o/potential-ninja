@@ -12,14 +12,17 @@ public class ThreadCounter {
   public static void main(String[] argv){
 
     while (true) {
-      new Thread(() -> {
-        add();
+      new Thread(new Runnable() {
+        @Override
+        public void run() {
+          add();
 
-        while (true) {
-          try {
-            Thread.sleep(1000);
-          } catch (Exception e) {
-            System.err.println(e);
+          while (true) {
+            try {
+              Thread.sleep(1000);
+            } catch (Exception e) {
+              System.err.println(e);
+            }
           }
         }
       }).start();
