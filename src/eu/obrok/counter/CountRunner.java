@@ -39,7 +39,7 @@ public class CountRunner {
 
     for (CounterFactory.CounterType type : CounterFactory.CounterType.values()) {
 
-      try (BufferedWriter writer = new BufferedWriter(new FileWriter(type + ".log"))) {
+      try (BufferedWriter writer = new BufferedWriter(new FileWriter(type + ".csv"))) {
 
         for (int it = 0; it < 100; it++) {
           double start = System.currentTimeMillis();
@@ -47,7 +47,7 @@ public class CountRunner {
           setCounter(c);
           run();
 
-          writer.write(String.format("%d\t\t%f\n", c.getCount(), System.currentTimeMillis() - start));
+          writer.write(String.format("%d;%f\n", c.getCount(), System.currentTimeMillis() - start));
         }
       }
       catch (IOException e) {
